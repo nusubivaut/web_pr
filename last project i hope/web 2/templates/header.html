@@ -1,0 +1,22 @@
+<nav class="flex-nav">
+  <div class="container">
+    <div class="grid menu">
+      <div class="column-md-6">
+        <p class="logo"><a href="/">Магазин Алхимика</a></p>
+      </div>
+      <div class="column-xs-4 column-md-6">
+        <ul>
+          <li class="nav-item"><a href="/about">О проекте</a></li>
+          <li class="nav-item"><a href="/add_item">Добавить элементы</a></li>
+          {% if isAuth %}
+            <li class="nav-item"><a href="/c">Выйти</a></li>
+          {% else %}
+            <li class="nav-item"><a href="/reg">Войти/Регистрация</a></li>
+          {% endif %}
+          <li class="nav-item"><a href="/cart">Мои элементы</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr style="color: #e3dddd; background-color: #e3dddd; height: 0.0625rem; border: none">
+  </div>
+</nav>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Мои элементы - {{ cart|length }}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+        <style type="text/css">
+      img:hover {
+        opacity: 0.5;
+      }
+    </style>
+</head>
+<body>
+    {% include "header.html" %}
+<div class="wrapper">
+  <div class="">
+    <div class="product-info">
+      <h1>Мои элементы</h1>
+      <hr>
+
+      <div class="desc">
+        {% for i in cart %}
+          <img src="{{ data[i]['photos']['main'] }}" style="max-height: 100px; vertical-align: top;" onclick="document.getElementById('{{ i }}').click()">
+          <form method="post" hidden>
+            <input name="id" value="{{ i }}">
+            <button type="submit" id="{{ i }}"></button>
+          </form>
+          {{ data[i]["name"] }} - <a style="float: right;">{{ data[i]["prices"]["rub"] }} ₽ * {{ cart[i] }}</a>
+          {{ data[i]["descr"] }}
+          <br><hr>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+</div> <!-- product -->
+</div> <!-- wrapper -->
+<script src="/static/js/scripts.js"></script>
+</body>
+</html>

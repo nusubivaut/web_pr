@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Добавить элемент</title>
+	<link rel="stylesheet" href="/static/css/style.css"> </head>
+	<script type="text/javascript">
+		function readURL(input) {
+		  if (input.files && input.files[0]) {
+		    var t = document.getElementsByClassName("product-shot")[0];
+		    var reader = new FileReader();
+
+		    reader.onload = function(e) {
+		      var im = document.createElement('img')
+		      var i = document.createElement("input")
+		      i.value = e.target.result
+		      i.setAttribute("hidden", "")
+		      i.setAttribute("class", "hidden-innput")
+		      i.name = "img" + document.getElementsByClassName("hidden-innput").length
+		      im.setAttribute('onclick', 'this.nextSibling.value = "DELETED";this.remove();')
+		      im.src = e.target.result
+		      t.appendChild(im);
+		      t.appendChild(i)
+		    };
+		    reader.readAsDataURL(input.files[0]);
+		  }
+		}
+	</script>
+<body> 
+	{% include "header.html" %}
+	<div class="wrapper">
+		<form method="POST">
+			<div class="col-1-2">
+				<div class="file-upload">
+					<a onclick="">Загрузить фото</a>
+					<div class="image-upload-wrap">
+						<input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+					</div>
+				</div>
+				<div class="product-wrap">
+					<div class="product-shot">
+						{% for i in range(imgs|length) %}
+							<img src="{{ imgs[i] }}" onclick="document.getElementById('img{{ i }}').value = 'DELETED';document.getElementById('img0').setAttribute('value', 'DELETED');this.remove();">
+							<input value="{{ imgs[i] }}" hidden class="hidden-innput" name="img{{ i }}" id="img{{ i }}">
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			<div class="col-1-2">
+				<div class="product-info">
+					<h1>						
+						<div class="beautiful-input-container">
+							<input class="beautiful-input" required="" name="name" type="label" value="{{ name }}">
+							<label class="beautiful-label" style="font-size: 10px; letter-spacing: 1px">Название</label>
+						</div></h1>
+					<div class="desc">
+						<textarea placeholder="Описание" rows="20" name="descr" cols="40" value="{{ descr }}"></textarea>
+
+						<br><hr><br>
+						</div>
+					<div class="beautiful-input-container">
+						<input class="beautiful-input" required="" name="price" type="label" placeholder="" onblur="this.placeholder = ''" onfocus="this.placeholder = '₽'" value="{{ price }}">
+						<label class="beautiful-label">Цена</label>
+					</div>
+					<button hidden id="sbmt"></button>
+					<a href="#" class="button" onclick="document.getElementById('sbmt').click()">Добавить</a>
+			</div>
+		</form>
+	</div>
+	<script src="/static/js/scripts.js"></script>
+</body>
+<div style="height: 100px"></div>
+</html>

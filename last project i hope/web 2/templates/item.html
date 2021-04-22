@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ data[id]['name'] }}{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    {% include "header.html" %}
+<div class="wrapper">
+  <div class="col-1-2">
+    <div class="product-wrap">
+      <div class="product-shot">
+            {% for src in data[id]['photos']['all'] %}
+              <img src="{{ src }}" alt="" />
+            {% endfor %}
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-1-2">
+    <div class="product-info">
+      <h1>{{ data[id]["name"] }}</h1>
+      <hr>
+      <h2>{{ data[id]["prices"]["rub"] }} ₽</h2>
+      <form method="post" hidden>
+        <button type = "submit" id="sbmt"></button>
+      </form>
+      <a href="#" class="button" onclick="document.getElementById('sbmt').click()">Добавить элемент</a>
+      {% if isOwner %}
+        <a href="edit" class="button">edit</a>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+
+
+</div> <!-- product -->
+</div> <!-- wrapper -->
+<script src="/static/js/scripts.js"></script>
+</body>
+</html>

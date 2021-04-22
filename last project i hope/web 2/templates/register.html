@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Авторизация</title>
+	<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+	{% include "header.html" %}
+	<div class="wrapper">
+		<div>
+			<div class="product-info">
+				<h1>Авторизация</h1>
+				<hr>
+				<div class="desc">
+					<form method="post" id="authorize">
+						<div class="beautiful-input-container">
+							<input class="beautiful-input" required="" name="login">
+							<label class="beautiful-label">Имя</label>
+						</div>
+						<br>
+						<div class="beautiful-input-container">
+							<input class="beautiful-input" required="" name="password" type="password">
+							<label class="beautiful-label">Пароль</label>
+						</div>
+						<input name="isreg" value = "0" id="isreg" hidden>
+						<button id="submit" hidden></button>
+						<a href="#" class="button col-1-2" style="text-align: center; background: gray; padding: 12px 0px" onclick="document.getElementById('isreg').value = 0; document.getElementById('submit').click()">Войти</a>
+						<a href="#" class="button col-1-2" style="text-align: center; background: gray; padding: 12px 0px" onclick="document.getElementById('isreg').value = 1; document.getElementById('submit').click()">Регистрация</a>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+<script src="/static/js/scripts.js"></script>
+</body>
+</html>
